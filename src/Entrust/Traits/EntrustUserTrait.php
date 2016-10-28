@@ -135,12 +135,14 @@ trait EntrustUserTrait
             return $requireAll;
         } else {
             foreach ($this->cachedRoles() as $role) {
-                // Validate against the Permission table
-                foreach ($role->cachedPermissions() as $perm) {
-                    if (str_is( $permission, $perm->name) ) {
-                        return true;
+                if($this->activeClub == $role->club_id){
+                    // Validate against the Permission table
+                    foreach ($role->cachedPermissions() as $perm) {
+                        if (str_is( $permission, $perm->name) ) {
+                            return true;
+                        }
                     }
-                }
+                } 
             }
         }
 
